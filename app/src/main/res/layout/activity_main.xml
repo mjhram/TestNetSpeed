@@ -1,0 +1,220 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:grid="http://schemas.android.com/apk/res-auto"
+    xmlns:gauge="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/scrollView"
+    android:fillViewport="true">
+
+<RelativeLayout
+   xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:focusableInTouchMode="false"
+    android:background="#ffff3268"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentTop="true">
+
+        <GridLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:id="@+id/gridLayout"
+            android:layout_above="@+id/linearLayout"
+            android:layout_alignParentTop="true"
+            android:onClick="onMainClick"
+            >
+            <TextView
+                android:text="Model:"
+                android:layout_gravity="start"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="---"
+                android:id="@+id/textViewModel"
+                android:textColor="@android:color/white" />
+            <TextView
+                android:text="Network Class:"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="---"
+                android:id="@+id/id_netclass"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="NetName:"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="---"
+                android:id="@+id/id_netname"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="Cell Id:"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="---"
+                android:id="@+id/id_cellid"
+                android:textColor="@android:color/white"
+                />
+
+            <TextView
+                android:text="RNC:"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="---"
+                android:id="@+id/id_rnc"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="LAC:"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="---"
+                android:id="@+id/id_lac"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="Signal Strength:"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="---"
+                android:id="@+id/id_rssi"
+                android:textColor="@android:color/white"
+                />
+
+            <TextView
+                android:text="DL Rate:"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="---"
+                android:id="@+id/rateText_id"
+                android:textColor="@android:color/white"
+                />
+
+            <TextView
+                android:text="DL Min, Max:"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="---"
+                android:id="@+id/id_minmaxrate"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="UL Rate:"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="---"
+                android:id="@+id/txRateText_id"
+                android:textColor="@android:color/white"
+                />
+
+            <TextView
+                android:text="UL Min, Max"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="---"
+                android:id="@+id/id_minmaxTxrate"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="latitude"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="---"
+                android:id="@+id/id_lat"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="longitude"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:text="---"
+                android:id="@+id/id_lon"
+                android:textColor="@android:color/white"
+                />
+
+        </GridLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="139dp"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout"
+        android:layout_alignRight="@+id/scrollView2"
+        android:layout_alignEnd="@+id/scrollView2">
+
+        <ImageView android:id="@+id/ac_logo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+             />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Show History"
+            android:id="@+id/id_BtnHistory"
+            android:textSize="25dp"
+            android:textColor="#ffffffff"
+            />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Test"
+            android:textColor="#ffffffff"
+            android:textSize="25dp"
+            android:onClick="onTestClick" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Stop"
+            android:textColor="#ffffffff"
+            android:textSize="25dp"
+            android:onClick="onStopClick" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Test"
+            android:id="@+id/btnStartTest"
+            android:textColor="#ffffffff"
+            android:textSize="25dp"
+            />
+    </LinearLayout>
+
+</RelativeLayout>
+</ScrollView>
