@@ -18,6 +18,7 @@ import java.util.List;
  */
 public class c_Info implements Parcelable{
     //private MainActivity theActivity;
+    private String serverUri;
     public String deviceId;
     public String deviceId2;
     public String manuf;
@@ -52,6 +53,10 @@ public class c_Info implements Parcelable{
     public double maxTxRate;
     public double pingTime;
     public double lat, lon;//Location info
+    public int cdmaDbm;
+    public int cdmaEcio;
+    public String neighboringCells;
+    public String tmp;
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -91,7 +96,10 @@ public class c_Info implements Parcelable{
         dest.writeDouble(pingTime);
         dest.writeDouble(lat);
         dest.writeDouble(lon);
-
+        dest.writeString(this.neighboringCells);
+        dest.writeInt(cdmaDbm);
+        dest.writeInt(cdmaEcio);
+        dest.writeString(tmp);
     }
 
     @Override
@@ -136,10 +144,15 @@ public class c_Info implements Parcelable{
         pingTime=in.readDouble();
         lat=in.readDouble();
         lon=in.readDouble();
+        neighboringCells = in.readString();
+        cdmaDbm=in.readInt();
+        cdmaEcio = in.readInt();
+        tmp = in.readString();
     }
 
-    public c_Info() {
+    public c_Info(String uri) {
         //theActivity = activity;
+        serverUri = uri;
     }
 
     public c_Info(Parcel in){
@@ -168,10 +181,11 @@ public class c_Info implements Parcelable{
 
         public uploadInfo(Context c) {
             cntx = c;
+
         }
         @Override
         protected Void doInBackground(Void... a) {
-            String url_dbsite = "http://3gtest.net76.net/addTest.php";
+            String url_dbsite = serverUri + "/addTest.php";
             JSONParser jsonParser = new JSONParser();
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -211,6 +225,10 @@ public class c_Info implements Parcelable{
             params.add(new BasicNameValuePair("netType2", Integer.toString(netType2)));
             params.add(new BasicNameValuePair("netClass2", netClass2));
 
+            params.add(new BasicNameValuePair("nei", neighboringCells));
+            params.add(new BasicNameValuePair("cdmaDbm", Integer.toString(cdmaDbm)));
+            params.add(new BasicNameValuePair("cdmaEcio", Integer.toString(cdmaEcio)));
+
             jsonParser.makeHttpRequest(url_dbsite, "POST", params);
             return null;
         }
@@ -236,11 +254,13 @@ public class c_Info implements Parcelable{
         }
         theActivity.txt_lac.setText(""+lac);
         theActivity.txt_rssi.setText(""+rssi);
-        theActivity.txt_rxRateText.setText(MainActivity.getRateWithUnit(rxRate));
-        theActivity.txt_txRateText.setText(MainActivity.getRateWithUnit(txRate));
         theActivity.txt_minmaxrx.setText(MainActivity.getRateWithUnit(minRxRate)+", "+MainActivity.getRateWithUnit(maxRxRate));
         theActivity.txt_minmaxtx.setText(MainActivity.getRateWithUnit(minTxRate)+", "+MainActivity.getRateWithUnit(maxTxRate));
-        theActivity.txt_latitude.setText(""+lat);
-        theActivity.txt_longitude.setText(""+lon);
+        theActivity.txt_latitude.setText(""+lat + ", " + +lon);
+
+        theActivity.txt_neighboring.setText(this.neighboringCells);
+        theActivity.txt_cdmaDbm.setText("" + this.cdmaDbm);
+        theActivity.txt_cdmaEcio.setText("" + this.cdmaEcio);
+
     }
 }
