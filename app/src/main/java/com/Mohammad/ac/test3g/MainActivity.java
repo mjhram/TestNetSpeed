@@ -67,19 +67,12 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
     // button to show progress dialog
     Button btnStartTest;
     Button btnHistory;
-    //Button btnUpdate;
-    //Button btnUpload;
 
-    // Progress Dialog
-    //private ProgressDialog pDialog;
-    //public TextView txt_rxRateText;
-    //public TextView txt_txRateText;
     public TextView txt_minmaxtx;
     //public GaugeView mGaugeView2;
 
     // File url to download
     private static String file_url = "http://download.thinkbroadband.com/20MB.zip";
-    //http://api.androidhive.info/progressdialog/hive.jpg";
 
     private ListView listView;
     private TextView txtRxRateText;
@@ -175,19 +168,9 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
                 } else {
                     Toast.makeText(MainActivity.this.thisActivity, "No Network Available", Toast.LENGTH_LONG).show();
                 }
-
             }
         });
 
-        /*btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                collectInitInfo();
-                mobInfo.showInfo(thisActivity);
-            }
-        });*/
-
-        //btnUpdate.setVisibility(View.GONE);
         if (savedInstanceState != null) {
             mobInfo = savedInstanceState.getParcelable(MOB_INFO);
             mobInfo.showInfo(thisActivity);
@@ -563,7 +546,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
                     }
                     break;
                 case "com.Mohammad.ac.test3g.DONE":
-                     uploadDone = intent.getBooleanExtra("DONE",false);
+                    uploadDone = intent.getBooleanExtra("DONE",false);
                     if(uploadDone) {
                         btnStartTest.setVisibility(View.VISIBLE);
                         btnHistory.setVisibility(View.VISIBLE);
